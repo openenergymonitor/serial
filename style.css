@@ -1,0 +1,27 @@
+.wrapper {
+    width: 60%;
+    margin: 0 auto;
+}
+#input {
+    width: 100%;
+}
+
+#log {
+    height: 320px;
+    width: 100%;
+    
+    color:#fff;
+    background-color:#300a24;
+    
+    overflow: scroll;
+    overflow-x: hidden;
+    
+    white-space: pre;
+    font-family:monospace;
+    padding-left:10px;
+    padding-top:10px;
+}
+
+.hidden {
+    display: none;
+}
