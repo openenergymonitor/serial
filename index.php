@@ -22,9 +22,13 @@
 <script>
     
     async function connect() {
-        const usbVendorId = 0x10c4;
 
-        port = await navigator.serial.requestPort({ filters: [{ usbVendorId }] });
+        port = await navigator.serial.requestPort({ 
+            filters: [
+                { usbVendorId: 0x10c4 },
+                { usbVendorId: 0x1209 }
+            ] 
+        });
         await port.open({ baudRate: 115200 });
 
         app.connected = true;
