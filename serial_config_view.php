@@ -16,9 +16,9 @@
 
     <button class="btn btn-danger" style="float:right; margin-top:4px" @click="stop" v-if="connected"><?php echo _('Stop Serial'); ?></button>
     -->
-    
+
     <button class="btn btn-info" style="float:right; margin-top:13px" @click="connect" :disabled="connected">{{ button_connect_text }}</button>
-    
+
     <h3 style="color:#333">Serial Config Tool</h3>
 
     <!--
@@ -140,9 +140,9 @@
                 <td><input type="text" v-model="device.rfNode" style="width:80px; margin:0" @change="set_rfNode" :disabled="!connected" /></td>
                 <td><input type="text" v-model="device.rfGroup" style="width:80px; margin:0" @change="set_rfGroup" :disabled="!connected" /></td>
                 <td><select style="width:100px; margin:0" v-model="device.rfBand" @change="set_rfBand" :disabled="!connected">
-                        <option>433 MHz</option>
-                        <option>868 Mhz</option>
-                        <option>915 MHz</option>
+                        <option value="0">433 MHz</option>
+                        <option value="1">868 Mhz</option>
+                        <option value="2">915 MHz</option>
                     </select></td>
                 <td>{{ device.rfFormat }}</td>
             </tr>
@@ -423,7 +423,7 @@
 
         // Is the line valid JSON?
         // {"MSG":"P1:0.00,P2:0.00,P3:0.00,P4:0.00,P5:0.00,P6:0.00,E1:0.00,E2:0.00,E3:0.00,E4:0.00,E5:0.00,E6:0.00"}
-        // decode data line 
+        // decode data line
         //if (line.substring(0, 1) == "{") {
         try {
             var json = JSON.parse(line);
@@ -610,7 +610,15 @@
 
                     // rfBand
                     else if (key == "rfBand") {
-                        app.device.rfBand = val;
+                        if (val.contains("433")) {
+                            app.device.rfBand = 0;
+                        }
+                        else if (val.contains("868")) {
+                            app.device.rfBand = 1;
+                        }
+                        else if (val.contains("915")) {
+                            app.device.rfBand = 2;
+                        }
                     }
 
                     // rfPower
