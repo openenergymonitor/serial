@@ -16,9 +16,9 @@
 
     <button class="btn btn-danger" style="float:right; margin-top:4px" @click="stop" v-if="connected"><?php echo _('Stop Serial'); ?></button>
     -->
-    
+
     <button class="btn btn-info" style="float:right; margin-top:13px" @click="connect" :disabled="connected">{{ button_connect_text }}</button>
-    
+
     <h3 style="color:#333">Serial Config Tool</h3>
 
     <!--
@@ -55,8 +55,6 @@
                 </tr>
             </tbody>
         </table>
-
-
 
         <div class="input-prepend input-append" v-if="device.hardware!='emonPi3'">
             <span class="add-on">Voltage calibration</span>
@@ -123,7 +121,6 @@
             </tr>
         </table>
 
-
         <div class="input-prepend input-append" v-if="device.hardware!='emonPi2'">
             <span class="add-on">Radio enabled</span>
             <span class="add-on"><input type="checkbox" style="margin-top:2px" v-model="device.RF" @change="set_radio" :disabled="!connected"></span>
@@ -170,13 +167,10 @@
         <button class="btn btn-info" @click="zero_energy_values" :disabled="!connected" style="float:right">Zero energy values</button>
         <button v-if="changes" class="btn btn-warning" :disabled="!changes" @click="save">Save changes</button>
 
-
-
         <br><br>
     </div>
 
     <div v-if="!config_received" class="alert alert-info">Waiting for configuration from device...</div>
-
 
     <div class="alert alert-danger" v-if="upgrade_required"><b>Firmware update required:</b> Looks like you are running an older firmware version on this device, please upgrade the device firmware to use this tool.<br><br>Alternatively, enter commands manually to configure, send command ? to list configuration commands and options.</div>
 
@@ -423,7 +417,7 @@
 
         // Is the line valid JSON?
         // {"MSG":"P1:0.00,P2:0.00,P3:0.00,P4:0.00,P5:0.00,P6:0.00,E1:0.00,E2:0.00,E3:0.00,E4:0.00,E5:0.00,E6:0.00"}
-        // decode data line 
+        // decode data line
         //if (line.substring(0, 1) == "{") {
         try {
             var json = JSON.parse(line);
@@ -784,7 +778,6 @@
     is_emonhub_running();
     var updates_is_emonhub_running;
     updates_is_emonhub_running = setInterval(is_emonhub_running, 2000);
-
 
     var wait_for_config_interval;
     is_running();

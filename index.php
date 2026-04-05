@@ -11,23 +11,20 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
 </head>
 
-<html>
-    <body>
-        <div class="container">
-            <?php echo file_get_contents("serial_config_view.php"); ?>
-        </div>
-    </body>
-</html>
+<body>
+    <div class="container">
+        <?php include "serial_config_view.php"; ?>
+    </div>
+</body>
 
 <script>
-    
-    async function connect() {
 
-        port = await navigator.serial.requestPort({ 
+    async function connect() {
+        port = await navigator.serial.requestPort({
             filters: [
                 { usbVendorId: 0x10c4 },
                 { usbVendorId: 0x1209 }
-            ] 
+            ]
         });
         await port.open({ baudRate: 115200 });
 
@@ -50,7 +47,7 @@
             }
         }, 2000);
 
-        readLoop();
+        await readLoop();
     }
 
     async function readLoop() {
@@ -60,7 +57,7 @@
             const { value, done } = await reader.read();
             if (value) {
                 for (var i = 0; i < value.length; i++) {
-                    if (value[i] == '\n') {
+                    if (value[i] === '\n') {
                         var line = buffer.trim();
                         buffer = "";
                         log.textContent += line + "\n";
@@ -73,16 +70,16 @@
                     }
                 }
             }
-            
-            // If config has not been received, wait 2s and if it still has not been received send 'l' to request config
+
+            // If config has not been received, wait 2s and if it still has not been received, send 'l' to request config
             if (!app.config_received) {
                 wait_for_config_interval = setTimeout(function() {
                     if (!app.config_received) {
                         writeToStream("l");
                     }
                 }, 2000);
-            } 
-            
+            }
+
             if (done) {
                 console.log('[readLoop] DONE', done);
                 reader.releaseLock();
@@ -90,6 +87,5 @@
             }
         }
     }
-    
-    
+
 </script>
