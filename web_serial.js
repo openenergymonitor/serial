@@ -81,7 +81,7 @@ async function connect() {
         }
     }, 2000);
 
-    readLoop();
+    await readLoop();
 }
 
 /**
@@ -98,7 +98,7 @@ async function readLoop() {
 
         if (value) {
             for (var i = 0; i < value.length; i++) {
-                if (value[i] == '\n') {
+                if (value[i] === '\n') {
                     var line = buffer.trim();
                     buffer = "";
                     log.textContent += line + "\n";
