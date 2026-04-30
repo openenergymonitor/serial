@@ -1,27 +1,296 @@
+/* ── Reset & base ──────────────────────────────────────────────── */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #f0f2f5;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 14px;
+    color: #2c3e50;
+    line-height: 1.6;
+}
+
+h3 {
+    margin: 0 0 20px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #1a1a2e;
+    letter-spacing: 0.3px;
+}
+
+h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #34495e;
+    margin: 20px 0 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ── Layout ────────────────────────────────────────────────────── */
+
 .wrapper {
     width: 60%;
     margin: 0 auto;
 }
-#input {
-    width: 100%;
+
+.container {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 32px 24px 48px;
 }
 
-#log {
-    height: 320px;
-    width: 100%;
-    
-    color:#fff;
-    background-color:#300a24;
-    
-    overflow: scroll;
-    overflow-x: hidden;
-    
-    white-space: pre;
-    font-family:monospace;
-    padding-left:10px;
-    padding-top:10px;
+#app {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    padding: 28px 32px 24px;
+    margin-bottom: 20px;
 }
 
 .hidden {
     display: none;
+}
+
+/* ── Buttons ───────────────────────────────────────────────────── */
+
+.btn {
+    display: inline-block;
+    padding: 7px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.5;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    transition: background-color 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+    user-select: none;
+    text-decoration: none;
+    letter-spacing: 0.2px;
+}
+
+.btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(91, 192, 222, 0.35);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #2980b9;
+    border-color: #2472a4;
+}
+.btn-primary:not(:disabled):hover {
+    background-color: #2472a4;
+}
+
+.btn-info {
+    color: #fff;
+    background-color: #3498db;
+    border-color: #2e88c4;
+}
+.btn-info:not(:disabled):hover {
+    background-color: #2e88c4;
+}
+
+.btn-warning {
+    color: #fff;
+    background-color: #e67e22;
+    border-color: #cf711e;
+}
+.btn-warning:not(:disabled):hover {
+    background-color: #cf711e;
+}
+
+/* ── Tables ────────────────────────────────────────────────────── */
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+    font-size: 13.5px;
+}
+
+.table th {
+    padding: 10px 12px;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #6c757d;
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+    text-align: left;
+}
+
+.table td {
+    padding: 9px 12px;
+    vertical-align: middle;
+    border-top: 1px solid #ececec;
+}
+
+.table tbody tr:hover {
+    background-color: #fafbfc;
+}
+
+.table-bordered {
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.table-bordered th,
+.table-bordered td {
+    border: 1px solid #dee2e6;
+}
+
+/* ── Input groups ──────────────────────────────────────────────── */
+
+.input-prepend,
+.input-append {
+    display: inline-flex;
+    align-items: stretch;
+    border-radius: 6px;
+    border: 1px solid #ced4da;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+}
+
+/* Separator between every child via right border; last child gets none */
+.input-prepend > *,
+.input-append > * {
+    border-right: 1px solid #ced4da;
+}
+.input-prepend > *:last-child,
+.input-append > *:last-child {
+    border-right: none;
+}
+
+.add-on {
+    padding: 4px 10px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #495057;
+    background-color: #f1f3f5;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    border: none;
+}
+
+.input-prepend input,
+.input-prepend select,
+.input-append input,
+.input-append select {
+    border: none;
+    padding: 4px 7px;
+    font-size: 13px;
+    margin: 0;
+    outline: none;
+    background: #fff;
+    color: #2c3e50;
+    min-width: 0;
+    transition: background-color 0.15s ease;
+}
+
+.input-prepend input:focus,
+.input-prepend select:focus,
+.input-append input:focus,
+.input-append select:focus {
+    background-color: #f0f7ff;
+}
+
+/* Button attached inside an input group (e.g. Send) */
+.input-prepend .btn,
+.input-append .btn {
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+}
+
+/* Standalone inputs and selects inside tables */
+.table input[type="text"],
+.table input[type="checkbox"],
+.table select {
+    font-size: 13px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 4px 7px;
+    color: #2c3e50;
+    background: #fff;
+    transition: border-color 0.15s ease;
+}
+
+.table input[type="text"]:focus,
+.table select:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52,152,219,0.2);
+}
+
+.table input:disabled,
+.table select:disabled {
+    background: #f8f9fa;
+    color: #aaa;
+    cursor: not-allowed;
+}
+
+/* ── Alerts ────────────────────────────────────────────────────── */
+
+.alert {
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-size: 13.5px;
+    line-height: 1.55;
+}
+
+.alert-info {
+    color: #155d7a;
+    background-color: #e8f6fb;
+    border-color: #b6e0f0;
+}
+
+.alert-danger {
+    color: #842029;
+    background-color: #fde8e8;
+    border-color: #f5c6cb;
+}
+
+/* ── Log console ───────────────────────────────────────────────── */
+
+#log {
+    height: 320px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+
+    color: #e0e0e0;
+    background-color: #1a0e1f;
+
+    overflow: scroll;
+    overflow-x: hidden;
+
+    white-space: pre;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 12.5px;
+    line-height: 1.6;
+    padding: 14px 16px;
+}
+
+#input {
+    width: 100%;
 }
