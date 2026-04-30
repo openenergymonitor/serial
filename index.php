@@ -18,7 +18,7 @@
 
                 <h3 style="color:#333">
                     <img src="https://unpkg.com/lucide-static@latest/icons/cpu.svg" width="24" height="24" style="vertical-align:middle;margin-right:8px;margin-bottom:3px;opacity:0.65">
-                    Serial Config Toolhttps://github.com/openenergymonitor/serial/pull/2
+                    Serial Config Tool
                 </h3>
 
                 <?php include __DIR__ . '/lib/serial_config_template.php'; ?>
